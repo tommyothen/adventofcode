@@ -13,8 +13,9 @@ To build and run the solutions, you will need to have [Rust](https://www.rust-la
 To build and run the solutions, you can use the following commands:
 
 ```bash
-# Run the solution for day 1
-cargo single run day1/solution.rs
+# Run the solution for any day
+cd years/2022/<day>
+cargo single run solution.rs
 ```
 
 Running the solutions will create a `solution` subdirectory within the respective day directory. This directory will contain the compiled binary.
