@@ -1,4 +1,4 @@
-# 🎄 Advent of Code (2022-2022)
+# 🎄 Advent of Code
 
 This repository contains my solutions to the [Advent of Code](https://adventofcode.com/) puzzles.
 
@@ -9,7 +9,7 @@ The goal is to learn something new every year, or at least to have fun trying :)
 
 ## Languages
 
-* [2022](2022/README.md) - [Rust](https://www.rust-lang.org/)
+* [2022](years/2022/README.md) - [Rust](https://www.rust-lang.org/)
 
 ## Structure
 The repository is structured as follows:
@@ -34,3 +34,4 @@ The repository is structured as follows:
        [_______]
         \_____/
 ```
+* ASCII tree generated with [xmas-tree](https://github.com/importre/xmas-tree)
