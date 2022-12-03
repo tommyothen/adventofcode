@@ -13,11 +13,11 @@ impl Solution {
     }
 
     fn part1(&self) -> String {
-        self.input.clone()
+        "Not implemented".to_string()
     }
 
     fn part2(&self) -> String {
-        self.input.clone()
+        "Not implemented".to_string()
     }
 }
 
