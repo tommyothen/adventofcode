@@ -61,7 +61,7 @@ impl Solution {
         }
 
         return sum.to_string();
-    };
+    }
 
     fn intersection(&self, sets: &[&HashSet<char>]) -> HashSet<char> {
         let mut intersection = sets[0].clone();
