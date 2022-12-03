@@ -10,7 +10,7 @@ class Solution:
   def part2() -> str:
     return "Not implemented"
 
-def main():
+if __name__ == "__main__":
   # Read the input
   with open("input.txt", "r") as file:
     Solution.input = file.read()
@@ -24,7 +24,3 @@ def main():
   # Write the solutions to the output file
   with open("output.txt", "w") as file:
     file.write(f"{part1}\n{part2}")
-
-
-if __name__ == "__main__":
-  main()
