@@ -1,5 +1,12 @@
 {
   "languages": {
-    "2022": "rust"
+    "2022": "Rust",
+    "2021": "C++",
+    "2020": "Arduino",
+    "2019": "Lua",
+    "2018": "TypeScript",
+    "2017": "Java",
+    "2016": "JavaScript",
+    "2015": "Python"
   }
 }
