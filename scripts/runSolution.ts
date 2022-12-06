@@ -45,9 +45,9 @@ const selectDay = async (): Promise<string> => {
 };
 
 const run: {
-  [key: string]: (year: string, day: string) => void;
+  [key: string]: (year: string, day: number) => void;
 } = {
-  "Rust": (year: string, day: string) => {
+  "Rust": (year, day) => {
     // In the future I want to use the cargo run --release --bin 2022-04
 
     // For now we will cd into the directory and run cargo single
@@ -64,7 +64,7 @@ const run: {
     });
   },
 
-  "Python": (year: string, day: string) => {
+  "Python": (year, day) => {
     exec(`cd years/${year}/day${day} && python solution.py`, (err, stdout, stderr) => {
       if (err) {
         console.error(err);
@@ -84,7 +84,7 @@ async function runSolution() {
   const year = (args.year as string) || (await selectYear()).year;
   const day = (args.day as string) || (await selectDay()).replace("Day ", "");
 
-  run[langs[year]](year, day);
+  run[langs[year]](year, Number(day));
 }
 
 runSolution();

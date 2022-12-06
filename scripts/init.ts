@@ -1,4 +1,4 @@
-import { exec } from "child_process";
+import * as yargs from "yargs";
 import { prompt } from "enquirer";
 import { existsSync } from "fs";
 import { copySync } from "fs-extra";
@@ -28,15 +28,6 @@ const selectYear = async (): Promise<{ year: string }> => {
   });
 };
 
-const confirmLang = async (year: string): Promise<{ confirmation: boolean }> => {
-  const lang: string = langs[year];
-  return await prompt({
-    type: "confirm",
-    name: "confirmation",
-    message: `${year} is ${lang}. Is this correct?`,
-  });
-};
-
 const selectDay = async (): Promise<string> => {
   // Get the day from the choices of 1-25 starting at todays date
   const todayDay = new Date().getDate();
@@ -60,7 +51,7 @@ const createDay = (year: string, day: string) => {
 
   // Copy the template to the new day
   const templatePath = join(__dirname, "../templates", language);
-  const dayPath = join(__dirname, "../years", year.toString(), `day${day}`);
+  const dayPath = join(__dirname, "../years", year.toString(), `day${Number(day)}`);
 
   // If day already exists, don't do anything
   if (existsSync(dayPath)) {
@@ -75,15 +66,9 @@ const createDay = (year: string, day: string) => {
 };
 
 async function init() {
-  const { year } = await selectYear();
-  const { confirmation } = await confirmLang(year);
-
-  if (!confirmation) {
-    console.log("Please update the language in the script");
-    return;
-  }
-
-  const day = (await selectDay()).replace("Day ", "");
+  const args = await yargs.argv;
+  const year = (args.year as string) || (await selectYear()).year;
+  const day = (args.day as string) || (await selectDay()).replace("Day ", "");
 
   createDay(year, day);
 }
