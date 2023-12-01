@@ -94,5 +94,7 @@ export async function main(): Promise<[number, number]> {
   const { part1, part2 } = await Solution.solve();
   prettyPrintResults([part1, part2]);
 
+  Bun.write(resolve(import.meta.dir, "./output.txt"), `${part1.result}\n${part2.result}`);
+
   return [part1.result, part2.result];
 }
