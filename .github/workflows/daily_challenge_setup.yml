@@ -3,21 +3,21 @@ name: Daily Challenge Setup
 on:
   schedule:
     # Every day at midnight from Dec 1-25
-    - cron: '0 0 1-25 12 *'
+    - cron: "0 0 1-25 12 *"
 
 jobs:
   setup:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out a repository
-      uses: actions/checkout@v2
+      - name: Check out a repository
+        uses: actions/checkout@v2
 
-    - name: Set up Bun
-      uses: oven-sh/setup-bun@v1
-      with:
-        bun-version: latest
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
 
-    - name: Create Challenge Directory and Files
-      run: |
-        bun cli create
+      - name: Create Challenge Directory and Files
+        run: |
+          bun cli create
