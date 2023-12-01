@@ -25,11 +25,12 @@ To run tests, use the native bun test command.
 `);
 }
 
-async function run() {
+async function run(year = -1, day = "-1") {
   // Run the solution for the current day
   const today = new Date();
-  const year = today.getFullYear();
-  const day = pad(today.getDate(), 2, "0");
+
+  if (year === -1) year = today.getFullYear();
+  if (day === "-1") day = pad(today.getDate(), 2, "0");
 
   // Formatted path to the solution file, e.g. ./years/2023/01/solution.ts
   const solutionPath = `./years/${year}/${day}/solution.ts`;
@@ -48,11 +49,12 @@ async function run() {
   }
 }
 
-async function create() {
+async function create(year = -1, day = "-1") {
   // Create a new solution for the current day
   const today = new Date();
-  const year = today.getFullYear();
-  const day = pad(today.getDate(), 2, "0");
+
+  if (year === -1) year = today.getFullYear();
+  if (day === "-1") day = pad(today.getDate(), 2, "0");
 
   // Formatted path to the solution directory, e.g. ./years/2023/01/
   const solutionDir = `./years/${year}/${day}/`;
@@ -92,6 +94,32 @@ if (args.length === 0) {
   } else if (["run", "r"].includes(args[0])) {
     // Run the solution for the current day
     run();
+  } else {
+    // Show the help message
+    help();
+  }
+} else {
+  // 2015/01 - 2029/31
+  const validDateRegex = /^20(1[5-9]|2[0-9])\/(0[1-9]|1[0-9]|2[0-9]|3[01])$/;
+
+  if (
+    // bun cli create YYYY/DD
+    (args[0] === "create" || args[0] === "c") &&
+    validDateRegex.test(args[1])
+  ) {
+    create(
+      parseInt(args[1].split("/")[0]),
+      args[1].split("/")[1],
+    );
+  } else if (
+    // bun cli run YYYY/DD
+    (args[0] === "run" || args[0] === "r") &&
+    validDateRegex.test(args[1])
+  ) {
+    run(
+      parseInt(args[1].split("/")[0]),
+      args[1].split("/")[1],
+    );
   } else {
     // Show the help message
     help();

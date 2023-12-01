@@ -12,7 +12,7 @@ export const reverseString = (str: string) =>
  */
 export const pad = (str: string | number, length: number, char: string = "0") => {
   while (str.toString().length < length) str = char + str;
-  return str;
+  return str.toString();
 }
 
 /**
