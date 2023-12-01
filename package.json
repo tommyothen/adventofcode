@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "create": "bun . create",
-    "aoc": "bun ."
+    "cli": "bun ."
   },
   "devDependencies": {
     "bun-types": "latest"
