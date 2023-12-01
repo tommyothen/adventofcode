@@ -20,6 +20,8 @@ Commands:
   run, r      Run the solution for the current day
   create, c   Create a new solution for the current day
   --help, -h  Show the help message
+
+To run tests, use the native bun test command.
 `);
 }
 
@@ -90,9 +92,6 @@ if (args.length === 0) {
   } else if (["run", "r"].includes(args[0])) {
     // Run the solution for the current day
     run();
-  } else if (["test", "t"].includes(args[0])) {
-    // Run the tests for the current day
-    // TODO: Implement this
   } else {
     // Show the help message
     help();
