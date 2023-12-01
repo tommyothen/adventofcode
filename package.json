@@ -1,0 +1,18 @@
+{
+  "name": "adventofcode",
+  "module": "./lib/cli.ts",
+  "type": "module",
+  "scripts": {
+    "create": "bun . create",
+    "aoc": "bun ."
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "chalk": "4.1.2"
+  }
+}
