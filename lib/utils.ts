@@ -16,6 +16,18 @@ export const pad = (str: string | number, length: number, char: string = "0") =>
 }
 
 /**
+ * Returns the sum of all the numbers in an array or set
+ */
+export const sum = (arr: Array<number> | Set<number>) =>
+  [...arr].reduce((acc, curr) => acc + curr, 0);
+
+/**
+ * Returns the product of all the numbers in an array or set
+ */
+export const product = (arr: Array<number> | Set<number>) =>
+  [...arr].reduce((acc, curr) => acc * curr, 1);
+
+/**
  * Creates a 2D array with the specified number of rows and columns, and fills it with the specified default value
  */
 export const create2DArray = <T extends any>(rows: number, cols: number, defaultValue: T) =>
