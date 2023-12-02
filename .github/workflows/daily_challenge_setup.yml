@@ -4,6 +4,7 @@ on:
   schedule:
     # Every day at midnight from Dec 1-25
     - cron: "0 0 1-25 12 *"
+  workflow_dispatch:
 
 jobs:
   setup:
@@ -21,3 +22,15 @@ jobs:
       - name: Create Challenge Directory and Files
         run: |
           bun cli create
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m ":calendar: Create challenge for $(date +%Y/%d)"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
