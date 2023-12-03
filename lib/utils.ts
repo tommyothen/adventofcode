@@ -33,6 +33,12 @@ export const product = (arr: Array<number> | Set<number>) =>
 export const create2DArray = <T extends any>(rows: number, cols: number, defaultValue: T) =>
   Array.from({ length: rows }, () => Array.from({ length: cols }, () => defaultValue));
 
+/**
+ * Returns if the specified string is a number
+ */
+export const isNum = (str: string | undefined) =>
+  str !== undefined && !isNaN(Number(str));
+
 // Utility functions not specific to advent of code solutions
 type TimeitResult<Result> = {
   result: Result,

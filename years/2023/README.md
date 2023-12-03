@@ -16,6 +16,7 @@ To run any of my solutions, follow these steps:
 | --- | -------------- | ------------------------------------------- |
 | 1   | Trebuchet?!    | [Link](https://adventofcode.com/2023/day/1) |
 | 2   | Cube Conundrum | [Link](https://adventofcode.com/2023/day/2) |
+| 3   | Gear Ratios    | [Link](https://adventofcode.com/2023/day/3) |
 | ... | ...            | ...                                         |
 
 _The table will be updated as I progress through the challenges._

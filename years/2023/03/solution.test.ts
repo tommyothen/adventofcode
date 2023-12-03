@@ -2,13 +2,31 @@ import { expect, test } from "bun:test";
 import Solution from "./solution";
 
 test("Part 1", async () => {
-  const input = ``;
+  const input = `467..114..
+...*......
+..35..633.
+......#...
+617*......
+.....+.58.
+..592.....
+......755.
+...$.*....
+.664.598..`;
 
-  expect(await Solution.part1(input)).toBe(0);
+  expect(await Solution.part1(input)).toBe(4361);
 });
 
 test("Part 2", async () => {
-  const input = ``;
+  const input = `467..114..
+...*......
+..35..633.
+......#...
+617*......
+.....+.58.
+..592.....
+......755.
+...$.*....
+.664.598..`;
 
-  expect(await Solution.part2(input)).toBe(0);
+  expect(await Solution.part2(input)).toBe(467835);
 });
