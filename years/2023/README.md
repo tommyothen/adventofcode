@@ -12,12 +12,14 @@ To run any of my solutions, follow these steps:
 
 ## Progress
 
-| Day | Challenge      | Solution                                    |
-| --- | -------------- | ------------------------------------------- |
-| 1   | Trebuchet?!    | [Link](https://adventofcode.com/2023/day/1) |
-| 2   | Cube Conundrum | [Link](https://adventofcode.com/2023/day/2) |
-| 3   | Gear Ratios    | [Link](https://adventofcode.com/2023/day/3) |
-| ... | ...            | ...                                         |
+| Day | Challenge                       | Solution                                    |
+| --- | ------------------------------- | ------------------------------------------- |
+| 1   | Trebuchet?!                     | [Link](https://adventofcode.com/2023/day/1) |
+| 2   | Cube Conundrum                  | [Link](https://adventofcode.com/2023/day/2) |
+| 3   | Gear Ratios                     | [Link](https://adventofcode.com/2023/day/3) |
+| 4   | Scratchcards                    | [Link](https://adventofcode.com/2023/day/4) |
+| 5   | If You Give A Seed A Fertilizer | [Link](https://adventofcode.com/2023/day/5) |
+| ... | ...                             | ...                                         |
 
 _The table will be updated as I progress through the challenges._
 
