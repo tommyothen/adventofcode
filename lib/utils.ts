@@ -86,15 +86,25 @@ export async function timeit<
 export async function prettyPrintResults(results: [TimeitResult<any>, TimeitResult<any>]) {
   const [part1, part2] = results;
 
-  console.log(chalk.bold.underline('Result 1:'));
-  console.log(`Result: ${chalk.blue(part1.result)}`);
-  console.log(`Average Time: ${chalk.green(part1.average.toFixed(2))} ms`);
-  console.log(`Best Time: ${chalk.greenBright(part1.best.toFixed(2))} ms`);
-  console.log(`Worst Time: ${chalk.redBright(part1.worst.toFixed(2))} ms\n`);
+  /**
+   * Displays the time in ms or µs if appropriate
+   * @param ms The time in ms
+   * @returns The time in ms or µs .ToFixed(2)
+   */
+  const displayTime = (ms: number) => {
+    if (ms < 1) return `${(ms * 1000).toFixed(2)}µs`;
+    return `${ms.toFixed(2)}ms`;
+  }
 
-  console.log(chalk.bold.underline('Result 2:'));
+  console.log(chalk.bold.underline('Results 1:'));
+  console.log(`Result: ${chalk.blue(part1.result)}`);
+  console.log(`Average Time: ${chalk.green(displayTime(part1.average))}`);
+  console.log(`Best Time: ${chalk.greenBright(displayTime(part1.best))}`);
+  console.log(`Worst Time: ${chalk.redBright(displayTime(part1.worst))}\n`);
+
+  console.log(chalk.bold.underline('Results 2:'));
   console.log(`Result: ${chalk.blue(part2.result)}`);
-  console.log(`Average Time: ${chalk.green(part2.average.toFixed(2))} ms`);
-  console.log(`Best Time: ${chalk.greenBright(part2.best.toFixed(2))} ms`);
-  console.log(`Worst Time: ${chalk.redBright(part2.worst.toFixed(2))} ms`);
+  console.log(`Average Time: ${chalk.green(displayTime(part2.average))}`);
+  console.log(`Best Time: ${chalk.greenBright(displayTime(part2.best))}`);
+  console.log(`Worst Time: ${chalk.redBright(displayTime(part2.worst))}`);
 }
