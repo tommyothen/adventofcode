@@ -39,6 +39,38 @@ export const create2DArray = <T extends any>(rows: number, cols: number, default
 export const isNum = (str: string | undefined) =>
   str !== undefined && !isNaN(Number(str));
 
+/**
+ * Splits a string on \r?\n and optionally trims each line
+ */
+export const splitLines = (str: string, options: {
+  trim?: boolean,
+  amountOfNewlines?: number,
+} = {
+    trim: true,
+    amountOfNewlines: 1,
+  }) => {
+  const { trim, amountOfNewlines } = options;
+  // Build the regex
+  const newLineRegexBase = `\r?\n`;
+  const matchingRegex = new RegExp(`${newLineRegexBase}{${amountOfNewlines},}`, "g");
+
+  // Split the string
+  const split = str.split(matchingRegex);
+
+  // Trim the lines if necessary
+  if (trim) return split.map(line => line.trim());
+
+  return split;
+}
+
+/**
+ * Equivalent to the Python zip function
+ */
+export const zip = <T extends any>(...arrs: Array<Array<T>>) => {
+  const shortest = arrs.reduce((acc, curr) => curr.length < acc.length ? curr : acc);
+  return shortest.map((_, i) => arrs.map(arr => arr[i]));
+}
+
 // Utility functions not specific to advent of code solutions
 type TimeitResult<Result> = {
   result: Result,
