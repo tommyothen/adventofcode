@@ -40,7 +40,7 @@ export const isNum = (str: string | undefined) =>
   str !== undefined && !isNaN(Number(str));
 
 /**
- * Splits a string on \r?\n and optionally trims each line
+ * Splits a string on `\r?\n` and optionally trims each line
  */
 export const splitLines = (str: string, options: {
   trim?: boolean,
