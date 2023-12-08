@@ -64,6 +64,21 @@ export const splitLines = (str: string, options: {
 }
 
 /**
+ * Returns the greatest common divisor of two numbers
+ */
+export const gcd = (a: number, b: number): number => {
+  if (b === 0) return a;
+  return gcd(b, a % b);
+}
+
+/**
+ * Returns the least common multiple of two numbers
+ */
+export const lcm = (a: number, b: number): number => {
+  return (a * b) / gcd(a, b);
+}
+
+/**
  * Equivalent to the Python zip function
  */
 export const zip = <T extends any>(...arrs: Array<Array<T>>) => {
