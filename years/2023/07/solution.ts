@@ -1,4 +1,4 @@
-import { prettyPrintResults, splitLines, timeit, sum } from "@/utils";
+import { prettyPrintResults, timeit, sum } from "@/utils";
 import { resolve } from "path";
 
 /**
@@ -64,7 +64,7 @@ export default class Solution {
   }
 
   public static async part1(input: string): Promise<number> {
-    const lines = splitLines(input);
+    const lines = input.split(/\r?\n/g);
 
     const rankings: Array<Ranking> = [];
 
@@ -88,7 +88,7 @@ export default class Solution {
   }
 
   public static async part2(input: string): Promise<number> {
-    const lines = splitLines(input);
+    const lines = input.split(/\r?\n/g);
 
     const rankings: Array<Ranking> = [];
 

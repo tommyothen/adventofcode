@@ -40,30 +40,6 @@ export const isNum = (str: string | undefined) =>
   str !== undefined && !isNaN(Number(str));
 
 /**
- * Splits a string on `\r?\n` and optionally trims each line
- */
-export const splitLines = (str: string, options: {
-  trim?: boolean,
-  amountOfNewlines?: number,
-} = {
-    trim: true,
-    amountOfNewlines: 1,
-  }) => {
-  const { trim, amountOfNewlines } = options;
-  // Build the regex
-  const newLineRegexBase = `\r?\n`;
-  const matchingRegex = new RegExp(`${newLineRegexBase}{${amountOfNewlines},}`, "g");
-
-  // Split the string
-  const split = str.split(matchingRegex);
-
-  // Trim the lines if necessary
-  if (trim) return split.map(line => line.trim());
-
-  return split;
-}
-
-/**
  * Returns the greatest common divisor of two numbers
  */
 export const gcd = (a: number, b: number): number => {
