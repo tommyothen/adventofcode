@@ -22,6 +22,7 @@ To run any of my solutions, follow these steps:
 | 6   | Wait For It                     | [Link](https://adventofcode.com/2023/day/6) |
 | 7   | Camel Cards                     | [Link](https://adventofcode.com/2023/day/7) |
 | 8   | Haunted Wasteland               | [Link](https://adventofcode.com/2023/day/8) |
+| 9   | Mirage Maintenance              | [Link](https://adventofcode.com/2023/day/9) |
 | ... | ...                             | ...                                         |
 
 _The table will be updated as I progress through the challenges._
