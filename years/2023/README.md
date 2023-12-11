@@ -24,6 +24,7 @@ To run any of my solutions, follow these steps:
 | 8   | Haunted Wasteland               | [Link](https://adventofcode.com/2023/day/8)  |
 | 9   | Mirage Maintenance              | [Link](https://adventofcode.com/2023/day/9)  |
 | 10  | Pipe Maze                       | [Link](https://adventofcode.com/2023/day/10) |
+| 11  | Cosmic Expansion                | [Link](https://adventofcode.com/2023/day/11) |
 | ... | ...                             | ...                                          |
 
 _The table will be updated as I progress through the challenges._
