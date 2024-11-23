@@ -12,7 +12,7 @@ test("Part 1", async () => {
     "))(": -1,
     ")))": -3,
     ")())())": -3,
-  }
+  };
 
   // Test each case
   for (const [input, expected] of Object.entries(results)) {
@@ -21,7 +21,13 @@ test("Part 1", async () => {
 });
 
 test("Part 2", async () => {
-  const input = ``;
+  const results = {
+    ")": 1,
+    "()())": 5,
+  };
 
-  expect(await Solution.part2(input)).toBe(0);
+  // Test each case
+  for (const [input, expected] of Object.entries(results)) {
+    expect(await Solution.part2(input)).toBe(expected);
+  }
 });
