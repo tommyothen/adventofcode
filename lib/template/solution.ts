@@ -2,7 +2,7 @@ import { prettyPrintResults, timeit } from "@/utils";
 import { resolve } from "path";
 
 /**
- * ### Advent of Code 2023 - Day
+ * ### Advent of Code YYYY - Day DD
  */
 export default class Solution {
   private static input: Promise<string> = Bun.file(resolve(import.meta.dir, "./input.txt")).text();
