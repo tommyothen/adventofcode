@@ -1,14 +1,10 @@
-# 🎄 Advent of Code YYYY - Day DD
+# 🎄
 
-## Problem Description
-[Link to problem](https://adventofcode.com/YYYY/day/DD)
-
-## Notes
-<!-- Notes if any -->
+[Day DD](https://adventofcode.com/YYYY/day/DD)
 
 ## Results
 
-| Part | Result | Time |
-|------|--------|------|
-| 1    |        |      |
-| 2    |        |      |
+| Part | Result | Average of 1000 |
+| ---- | ------ | --------------- |
+| 1    |        |                 |
+| 2    |        |                 |
