@@ -19,11 +19,65 @@ export default class Solution {
   }
 
   public static async part1(input: string): Promise<number> {
-    return 0;
+    let result = 0;
+
+    for (const line of input.split("\n")) {
+      const nums = line.split(" ").map(Number);
+
+      const direction: "up" | "down" = nums[1] > nums[0] ? "up" : "down";
+
+      let safe = 0;
+      for (let i = 0; i < nums.length - 1; i++) {
+        const diff = Math.abs(nums[i + 1] - nums[i]);
+
+        if (direction === "up" && nums[i + 1] > nums[i]) {
+          if (diff > 0 && diff <= 3) {
+            safe++;
+          }
+        } else if (direction === "down" && nums[i + 1] < nums[i]) {
+          if (diff > 0 && diff <= 3) {
+            safe++;
+          }
+        }
+      }
+
+      if (safe === nums.length - 1) {
+        result++;
+      }
+    }
+
+    return result;
   }
 
   public static async part2(input: string): Promise<number> {
-    return 0;
+    let result = 0;
+
+    for (const line of input.split("\n")) {
+      const nums = line.split(" ").map(Number);
+
+      const direction: "up" | "down" = nums[1] > nums[0] ? "up" : "down";
+
+      let safe = 0;
+      for (let i = 0; i < nums.length - 1; i++) {
+        const diff = Math.abs(nums[i + 1] - nums[i]);
+
+        if (direction === "up" && nums[i + 1] > nums[i]) {
+          if (diff > 0 && diff <= 3) {
+            safe++;
+          }
+        } else if (direction === "down" && nums[i + 1] < nums[i]) {
+          if (diff > 0 && diff <= 3) {
+            safe++;
+          }
+        }
+      }
+
+      if (safe === nums.length - 1 || safe === nums.length - 2) {
+        result++;
+      }
+    }
+
+    return result;
   }
 }
 
