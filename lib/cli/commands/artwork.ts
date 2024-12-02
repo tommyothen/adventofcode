@@ -221,11 +221,11 @@ function convertToSVG(content: string, colourMap: ColourMap): string {
     }
   }
 
-  const width = maxWidth * CHAR_WIDTH;
+  const width = Math.floor((maxWidth * CHAR_WIDTH) / 11);
   const height = lines.length * CHAR_HEIGHT;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 ${width} ${height}" width="${width}" height="${height}">
     <style>
         text {
             font-family: 'Source Code Pro', monospace;
