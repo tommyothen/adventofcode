@@ -18,30 +18,32 @@ export default class Solution {
     };
   }
 
+  private static isSafe(nums: number[]): Boolean {
+    const direction: "up" | "down" = nums[1] > nums[0] ? "up" : "down";
+
+    let safe = 0;
+    for (let i = 0; i < nums.length - 1; i++) {
+      const diff = Math.abs(nums[i + 1] - nums[i]);
+
+      if (direction === "up" && nums[i + 1] > nums[i]) {
+        if (diff > 0 && diff <= 3) {
+          safe++;
+        }
+      } else if (direction === "down" && nums[i + 1] < nums[i]) {
+        if (diff > 0 && diff <= 3) {
+          safe++;
+        }
+      }
+    }
+
+    return safe === nums.length - 1;
+  }
+
   public static async part1(input: string): Promise<number> {
     let result = 0;
 
     for (const line of input.split("\n")) {
-      const nums = line.split(" ").map(Number);
-
-      const direction: "up" | "down" = nums[1] > nums[0] ? "up" : "down";
-
-      let safe = 0;
-      for (let i = 0; i < nums.length - 1; i++) {
-        const diff = Math.abs(nums[i + 1] - nums[i]);
-
-        if (direction === "up" && nums[i + 1] > nums[i]) {
-          if (diff > 0 && diff <= 3) {
-            safe++;
-          }
-        } else if (direction === "down" && nums[i + 1] < nums[i]) {
-          if (diff > 0 && diff <= 3) {
-            safe++;
-          }
-        }
-      }
-
-      if (safe === nums.length - 1) {
+      if (Solution.isSafe(line.split(" ").map(Number))) {
         result++;
       }
     }
@@ -55,25 +57,20 @@ export default class Solution {
     for (const line of input.split("\n")) {
       const nums = line.split(" ").map(Number);
 
-      const direction: "up" | "down" = nums[1] > nums[0] ? "up" : "down";
-
-      let safe = 0;
-      for (let i = 0; i < nums.length - 1; i++) {
-        const diff = Math.abs(nums[i + 1] - nums[i]);
-
-        if (direction === "up" && nums[i + 1] > nums[i]) {
-          if (diff > 0 && diff <= 3) {
-            safe++;
-          }
-        } else if (direction === "down" && nums[i + 1] < nums[i]) {
-          if (diff > 0 && diff <= 3) {
-            safe++;
-          }
-        }
+      if (Solution.isSafe(nums)) {
+        result++;
+        continue;
       }
 
-      if (safe === nums.length - 1 || safe === nums.length - 2) {
-        result++;
+      // Test if it's safe while removing a number
+      for (let i = 0; i < nums.length; i++) {
+        const newNumbers = [...nums];
+        newNumbers.splice(i, 1);
+
+        if (Solution.isSafe(newNumbers)) {
+          result++;
+          break;
+        }
       }
     }
 
