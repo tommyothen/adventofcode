@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -10 474 416" width="474" height="416">
+    <style>
+        text {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 14px;
+            white-space: pre;
+        }
+        svg {
+            background: #0f0f23;
+        }
+    </style>
+    <rect width="100%" height="100%" fill="#0f0f23"/>
+    <text x="56" y="12" fill="#ccc">.--'</text>
+    <text x="88" y="12" fill="#e3b585">~</text>
+    <text x="104" y="12" fill="#e3b585">~</text>
+    <text x="120" y="12" fill="#e3b585">~</text>
+    <text x="128" y="12" fill="#ccc">|</text>
+    <text x="200" y="12" fill="#ccc">.-'</text>
+    <text x="232" y="12" fill="#ffff66">*</text>
+    <text x="296" y="12" fill="#886655">\</text>
+    <text x="320" y="12" fill="#886655">/</text>
+    <text x="368" y="12" fill="#ccc">'-.</text>
+    <text x="416" y="12" fill="#ccc">1</text>
+    <text x="432" y="12" fill="#ffff66">**</text>
+    <text x="32" y="28" fill="#ccc">.--'</text>
+    <text x="64" y="28" fill="#e3b585">~</text>
+    <text x="88" y="28" fill="#00cc00">,</text>
+    <text x="96" y="28" fill="#ffff66">*</text>
+    <text x="112" y="28" fill="#e3b585">~</text>
+    <text x="128" y="28" fill="#ccc">|</text>
+    <text x="200" y="28" fill="#ccc">|</text>
+    <text x="224" y="28" fill="#009900">&gt;</text>
+    <text x="232" y="28" fill="#ff9900">o</text>
+    <text x="240" y="28" fill="#009900">&lt;</text>
+    <text x="272" y="28" fill="#886655">\_\_\|_/__/</text>
+    <text x="384" y="28" fill="#ccc">|</text>
+    <text x="416" y="28" fill="#ccc">2</text>
+    <text x="432" y="28" fill="#ffff66">**</text>
+    <text x="0" y="44" fill="#333333">.---'</text>
+    <text x="128" y="44" fill="#333333">|</text>
+    <text x="200" y="44" fill="#333333">|</text>
+    <text x="384" y="44" fill="#333333">|</text>
+    <text x="416" y="44" fill="#333333">3</text>
+    <text x="416" y="60" fill="#333333">4</text>
+    <text x="416" y="76" fill="#333333">5</text>
+    <text x="416" y="92" fill="#333333">6</text>
+    <text x="416" y="108" fill="#333333">7</text>
+    <text x="416" y="124" fill="#333333">8</text>
+    <text x="416" y="140" fill="#333333">9</text>
+    <text x="408" y="156" fill="#333333">10</text>
+    <text x="408" y="172" fill="#333333">11</text>
+    <text x="408" y="188" fill="#333333">12</text>
+    <text x="408" y="204" fill="#333333">13</text>
+    <text x="408" y="220" fill="#333333">14</text>
+    <text x="408" y="236" fill="#333333">15</text>
+    <text x="408" y="252" fill="#333333">16</text>
+    <text x="408" y="268" fill="#333333">17</text>
+    <text x="408" y="284" fill="#333333">18</text>
+    <text x="408" y="300" fill="#333333">19</text>
+    <text x="408" y="316" fill="#333333">20</text>
+    <text x="408" y="332" fill="#333333">21</text>
+    <text x="408" y="348" fill="#333333">22</text>
+    <text x="408" y="364" fill="#333333">23</text>
+    <text x="408" y="380" fill="#333333">24</text>
+    <text x="408" y="396" fill="#333333">25</text>
+</svg>
