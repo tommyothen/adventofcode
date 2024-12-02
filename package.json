@@ -1,6 +1,6 @@
 {
   "name": "adventofcode",
-  "module": "./lib/cli.ts",
+  "module": "./lib/cli/index.ts",
   "type": "module",
   "scripts": {
     "create": "bun . create",
