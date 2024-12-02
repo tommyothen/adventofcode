@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import path from "path";
 import { getCurrentAoCDate, parseDate } from "../helpers";
 
 /**
@@ -6,7 +7,10 @@ import { getCurrentAoCDate, parseDate } from "../helpers";
  */
 async function run(year?: number, day?: string) {
   const date = getCurrentAoCDate(year, day);
-  const solutionPath = `./years/${date.year}/${date.day}/solution.ts`;
+  const solutionPath = path.resolve(
+    import.meta.dir,
+    `../../../years/${date.year}/${date.day}/solution.ts`
+  )
 
   try {
     const file = Bun.file(solutionPath);
@@ -15,7 +19,7 @@ async function run(year?: number, day?: string) {
       throw new Error(`Solution file not found at ${chalk.cyan(solutionPath)}`);
     }
 
-    const solution = await import("." + solutionPath);
+    const solution = await import(solutionPath);
     const validatedSolution = await validateSolution(solution, solutionPath);
 
     console.log(
