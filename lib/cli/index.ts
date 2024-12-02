@@ -1,5 +1,6 @@
 import chalk from "chalk";
 
+import artworkCommand from "./commands/artwork";
 import createCommand from "./commands/create";
 import inputCommand from "./commands/input";
 import populateCommand from "./commands/populate";
@@ -41,6 +42,11 @@ const commands: Record<string, Command> = {
       "Populates all the input files for all the days with solutions (requires session cookie)",
     handler: populateCommand,
   },
+  artwork: {
+    aliases: ["artwork", "art", "a"],
+    description: "Fetches the current year's Advent of Code artwork and saves it as an SVG file",
+    handler: artworkCommand,
+  }
 };
 
 /**

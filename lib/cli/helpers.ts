@@ -4,6 +4,9 @@ import { pad } from "@/utils";
 // Regex for validating Advent of Code dates (2015/01 - 2059/25)
 export const DATE_REGEX = /^20(?:1[5-9]|[2-5]\d)\/(?:0[1-9]|1\d|2[0-5])$/;
 
+// User Agent for fetching data from Advent of Code
+export const USER_AGENT = "github.com/tommyothen/adventofcode by Tommy Othen";
+
 /**
  * Parse and validate a date string in the format YYYY/DD
  * @throws {Error} If the date format is invalid
@@ -98,7 +101,7 @@ export async function fetchInput(
     {
       headers: {
         Cookie: `session=${sessionCookie}`,
-        "User-Agent": "github.com/your-username/aoc-cli by your@email.com", // Replace with your info
+        "User-Agent": USER_AGENT,
       },
     }
   );
