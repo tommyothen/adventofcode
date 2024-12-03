@@ -19,11 +19,53 @@ export default class Solution {
   }
 
   public static async part1(input: string): Promise<number> {
-    return 0;
+    let result = 0;
+    const mulRegex = /mul\(\d+,\d+\)/g;
+
+    // For each match, split the numbers and multiply them
+    const matches = input.match(mulRegex);
+    if (!matches) return result;
+
+    for (const match of matches) {
+      const [a, b] = match
+        .slice(4, -1) // Remove the `mul(` and `)`
+        .split(",") // Split the numbers
+        .map(Number); // Convert them to numbers
+
+      result += a * b;
+    }
+
+    return result;
   }
 
   public static async part2(input: string): Promise<number> {
-    return 0;
+    let result = 0;
+    const regex = /mul\(\d+,\d+\)|do(?:n't)?\(\)/g;
+
+    // Default to not disabled
+    let disabled = false;
+
+    // For each match, check if it's a `mul()`, `do()`, or `don't()`
+    // Then do the appropriate operation
+    const matches = input.match(regex);
+    if (!matches) return result;
+
+    for (const match of matches) {
+      if (match === "do()") {
+        disabled = false;
+      } else if (match === "don't()") {
+        disabled = true;
+      } else if (!disabled) {
+        const [a, b] = match
+          .slice(4, -1) // Remove the `mul(` and `)`
+          .split(",") // Split the numbers
+          .map(Number); // Convert them to numbers
+
+        result += a * b;
+      }
+    }
+
+    return result;
   }
 }
 
