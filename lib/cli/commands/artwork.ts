@@ -221,7 +221,8 @@ function convertToSVG(content: string, colourMap: ColourMap): string {
     }
   }
 
-  const width = Math.floor((maxWidth * CHAR_WIDTH) / 11);
+  // const width = Math.floor((maxWidth * CHAR_WIDTH) / 11);
+  const width = 474;
   const height = lines.length * CHAR_HEIGHT;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -241,11 +242,29 @@ ${svgContent.join("\n")}
 </svg>`;
 }
 
-export default async function (): Promise<void> {
+export default async function (args?: string): Promise<void> {
+  let year: number;
+  if (args?.[0]) {
+    // Get the year from the argument
+    year = parseInt(args[0], 10);
+    if (isNaN(year)) {
+      throw new Error("Invalid year");
+    }
+
+    // Check if it's within the years of 2015-Present
+    if (year < 2015 || year > new Date().getFullYear()) {
+      throw new Error("Year must be between 2015 and the current year");
+    }
+  } else {
+    // Default to the current year
+    year = new Date().getFullYear();
+  }
+
+
   const sessionCookie = getSessionCookie();
 
   // Fetch the AOC website for the current year
-  const response = await fetch("https://adventofcode.com/", {
+  const response = await fetch(`https://adventofcode.com/${year}`, {
     headers: {
       cookie: `session=${sessionCookie}`,
       "User-Agent": USER_AGENT,
@@ -264,6 +283,5 @@ export default async function (): Promise<void> {
   const colours = extractColours(style);
   const artwork = convertToSVG(pre, colours);
 
-  const year = new Date().getFullYear();
   Bun.write(`./artworks/${year}.svg`, artwork);
 }
