@@ -11,6 +11,8 @@
 
 ## Alternative Solutions
 
+### Non-Regex Solution
+
 I also implemented a solution that doesn't use regex. It's a bit more verbose, and the performace is suprisingly worse than the regex, but it's still humbly fast enough.
 
 | Part | Average of 1000 |
@@ -118,33 +120,26 @@ I also implemented a solution that doesn't use regex. It's a bit more verbose, a
   }
 ```
 
-For fun, I also played around with the idea of capturing all of the enabled multiplication functions between the do() and don't() using regex. But the performance was SIGNIFICANTLY worse than the other two solutions averaging at 2.27ms per run. For completeness, here's the code:
+### Positive Lookbehind Regex
+
+Just playing around with even more regex I discovered "positive lookbehind" which isn't supported in every regex engine, but it is supported with whatever Bun uses! So I wrote this beautiful regex that captures all the `mul` calls that are between a do() and a don't(). The performance is absolutely terrible, averaging at 289.71ms per run, but I think it is a fun solution to show off!
 
 ```typescript
   public static async part2(input: string): Promise<number> {
     let result = 0;
-    const enabledRegex = /(?:^|do\(\))((?:.|\n)*?)(?:$|don't\(\))/g;
-    const mulRegex = /mul\(\d+,\d+\)/g;
+    const mulRegex = /(?<=(?:^|do\(\))(?:(?!don't\(\))[\s\S])*?)(mul\(\d+,\d+\))(?=[\s\S]*?(?:$|don't\(\)))/g;
 
-    // Match all the enabled sections
-    const enabledMatches = input.matchAll(enabledRegex);
+    // For each match, split the numbers and multiply them
+    const matches = input.match(mulRegex);
+    if (!matches) return result;
 
-    // For each enabled section, match all the `mul` calls
-    for (const match of enabledMatches) {
-      const [, section] = match;
-      const mulMatches = section.match(mulRegex);
+    for (const match of matches) {
+      const [a, b] = match
+        .slice(4, -1) // Remove the `mul(` and `)`
+        .split(",") // Split the numbers
+        .map(Number); // Convert them to numbers
 
-      if (!mulMatches) continue;
-
-      // For each match, split the numbers and multiply them
-      for (const mulMatch of mulMatches) {
-        const [a, b] = mulMatch
-          .slice(4, -1) // Remove the `mul(` and `)`
-          .split(",") // Split the numbers
-          .map(Number); // Convert them to numbers
-
-        result += a * b;
-      }
+      result += a * b;
     }
 
     return result;
