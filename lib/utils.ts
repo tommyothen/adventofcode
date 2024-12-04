@@ -34,6 +34,12 @@ export const create2DArray = <T extends any>(rows: number, cols: number, default
   Array.from({ length: rows }, () => Array.from({ length: cols }, () => defaultValue));
 
 /**
+ * Creates a 2D array from an input string
+ */
+export const create2DArrayFromInput = (str: string) =>
+  str.split("\n").map(line => line.split(""));
+
+/**
  * Returns if the specified string is a number
  */
 export const isNum = (str: string | undefined) =>

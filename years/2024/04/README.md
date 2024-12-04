@@ -6,5 +6,9 @@
 
 | Part | Result | Average of 1000 |
 | ---- | ------ | --------------- |
-| 1    | 2639   | 739.13µs        |
-| 2    | 2005   | 221.19µs        |
+| 1    | 2639   | 388.21µs        |
+| 2    | 2005   | 190.07µs        |
+
+## Revised Solution
+
+As I wrote earlier, I would rewrite the part 1 solution to just search the next 3 cells after finding an "X". After implementing the solution and removing all recursion. I was able to get the average to a nice 388.21µs, down from 739.13µs. I also reworked the initial grid parsing to be more efficient, bringing part 2 down to 190.07µs from 221.19µs.
