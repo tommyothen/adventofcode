@@ -1,4 +1,4 @@
-# 🎄 Red-Nosed Reports
+# 🎄 Day 2 - Red-Nosed Reports
 
 [Day 2](https://adventofcode.com/2024/day/2) was a nice challenge that required us to process a row of numbers and compare them to a set of rules, counting the number of "safe" rows. Not difficult, but again a good challenge to get us started.
 

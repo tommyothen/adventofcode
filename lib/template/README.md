@@ -1,4 +1,4 @@
-# 🎄
+# 🎄 Day DD -
 
 [Day DD](https://adventofcode.com/YYYY/day/DD)
 
