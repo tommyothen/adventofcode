@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 import Solution from "./solution";
 
-test("Part 1", async () => {
+test("2023/08 |> Part 1", async () => {
   const inputs = [
     `RL
 
@@ -23,7 +23,7 @@ ZZZ = (ZZZ, ZZZ)`,
   expect(await Solution.part1(inputs[1])).toBe(6);
 });
 
-test("Part 2", async () => {
+test("2023/08 |> Part 2", async () => {
   const input = `LR
 
 11A = (11B, XXX)

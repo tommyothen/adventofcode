@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 import Solution from "./solution";
 
-test("Part 1", async () => {
+test("2023/05 |> Part 1", async () => {
   const input = `seeds: 79 14 55 13
 
 seed-to-soil map:
@@ -39,7 +39,7 @@ humidity-to-location map:
   expect(await Solution.part1(input)).toBe(35);
 });
 
-test("Part 2", async () => {
+test("2023/05 |> Part 2", async () => {
   const input = `seeds: 79 14 55 13
 
 seed-to-soil map:

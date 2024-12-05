@@ -38,10 +38,14 @@ async function create(year?: number, day?: string) {
       .replace(/YYYY/g, date.year.toString())
       .replace(/DD/g, parseInt(date.day).toString());
 
+    const replacedTestTemplate = testTemplate
+      .replace(/YYYY/g, date.year.toString())
+      .replace(/DD/g, date.day);
+
     // Define all files to be created
     const files = {
       "solution.ts": replacedSolutionTemplate,
-      "solution.test.ts": testTemplate,
+      "solution.test.ts": replacedTestTemplate,
       "input.txt": "",
       "README.md": replacedReadmeTemplate,
     };

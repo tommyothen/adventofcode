@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 import Solution from "./solution";
 
-test("Part 1", async () => {
+test("2015/03 |> Part 1", async () => {
   const results = {
     ">": 2,
     "^>v<": 4,
@@ -13,7 +13,7 @@ test("Part 1", async () => {
   }
 });
 
-test("Part 2", async () => {
+test("2015/03 |> Part 2", async () => {
   const results = {
     "^v": 3,
     "^>v<": 3,

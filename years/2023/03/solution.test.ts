@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 import Solution from "./solution";
 
-test("Part 1", async () => {
+test("2023/03 |> Part 1", async () => {
   const input = `467..114..
 ...*......
 ..35..633.
@@ -16,7 +16,7 @@ test("Part 1", async () => {
   expect(await Solution.part1(input)).toBe(4361);
 });
 
-test("Part 2", async () => {
+test("2023/03 |> Part 2", async () => {
   const input = `467..114..
 ...*......
 ..35..633.
