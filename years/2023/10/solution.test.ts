@@ -26,7 +26,7 @@ LJ...`,
 SJLL7
 |F--J
 LJ.LJ`,
-  ].map(Solution.prettyInput);
+  ];
 
   expect(await Solution.part1(inputs[0])).toBe(4);
   expect(await Solution.part1(inputs[1])).toBe(4);
@@ -67,9 +67,9 @@ L---JF-JLJ.||-FJLJJ7
 7-L-JL7||F7|L7F-7F7|
 L.L7LFJ|||||FJL7||LJ
 L7JLJL-JLJLJL--JLJ.L`,
-  ].map(Solution.prettyInput);
+  ];
 
   expect(await Solution.part2(inputs[0])).toBe(4);
-  expect(await Solution.part2(inputs[2])).toBe(8);
-  expect(await Solution.part2(inputs[3])).toBe(10);
+  expect(await Solution.part2(inputs[1])).toBe(8);
+  expect(await Solution.part2(inputs[2])).toBe(10);
 });

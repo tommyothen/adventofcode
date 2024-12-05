@@ -4,16 +4,19 @@ import chalk from "chalk";
 /**
  * Reverse a string, as simple as that
  */
-export const reverseString = (str: string) =>
-  str.split("").reverse().join("");
+export const reverseString = (str: string) => str.split("").reverse().join("");
 
 /**
  * Pads a string or number with the specified character until it reaches the specified length
  */
-export const pad = (str: string | number, length: number, char: string = "0") => {
+export const pad = (
+  str: string | number,
+  length: number,
+  char: string = "0"
+) => {
   while (str.toString().length < length) str = char + str;
   return str.toString();
-}
+};
 
 /**
  * Returns the sum of all the numbers in an array or set
@@ -30,14 +33,20 @@ export const product = (arr: Array<number> | Set<number>) =>
 /**
  * Creates a 2D array with the specified number of rows and columns, and fills it with the specified default value
  */
-export const create2DArray = <T extends any>(rows: number, cols: number, defaultValue: T) =>
-  Array.from({ length: rows }, () => Array.from({ length: cols }, () => defaultValue));
+export const create2DArray = <T extends any>(
+  rows: number,
+  cols: number,
+  defaultValue: T
+) =>
+  Array.from({ length: rows }, () =>
+    Array.from({ length: cols }, () => defaultValue)
+  );
 
 /**
  * Creates a 2D array from an input string
  */
-export const create2DArrayFromInput = (str: string) =>
-  str.split("\n").map(line => line.split(""));
+export const create2DArrayFromInput = <T extends string>(str: T) =>
+  str.split("\n").map((line) => line.split("")) as Array<Array<T>>;
 
 /**
  * Returns if the specified string is a number
@@ -51,30 +60,32 @@ export const isNum = (str: string | undefined) =>
 export const gcd = (a: number, b: number): number => {
   if (b === 0) return a;
   return gcd(b, a % b);
-}
+};
 
 /**
  * Returns the least common multiple of two numbers
  */
 export const lcm = (a: number, b: number): number => {
   return (a * b) / gcd(a, b);
-}
+};
 
 /**
  * Equivalent to the Python zip function
  */
 export const zip = <T extends any>(...arrs: Array<Array<T>>) => {
-  const shortest = arrs.reduce((acc, curr) => curr.length < acc.length ? curr : acc);
-  return shortest.map((_, i) => arrs.map(arr => arr[i]));
-}
+  const shortest = arrs.reduce((acc, curr) =>
+    curr.length < acc.length ? curr : acc
+  );
+  return shortest.map((_, i) => arrs.map((arr) => arr[i]));
+};
 
 // Utility functions not specific to advent of code solutions
 type TimeitResult<Result> = {
-  result: Result,
-  average: number,
-  best: number,
-  worst: number,
-}
+  result: Result;
+  average: number;
+  best: number;
+  worst: number;
+};
 /**
  * Perform a timeit on a function, returning the result and the average, best, and worst times
  * @param fn A function to time
@@ -84,7 +95,7 @@ type TimeitResult<Result> = {
 export async function timeit<
   Fn extends (...args: Args) => Promise<any>,
   Args extends Array<any>,
-  Result extends Awaited<ReturnType<Fn>>,
+  Result extends Awaited<ReturnType<Fn>>
 >(fn: Fn, args: Args, times: number = 1000): Promise<TimeitResult<Result>> {
   let total = 0;
   let best = Infinity;
@@ -106,13 +117,15 @@ export async function timeit<
     average: total / times,
     best,
     worst,
-  }
+  };
 }
 
 /**
  * Pretty print the results of a timeit
  */
-export async function prettyPrintResults(results: [TimeitResult<any>, TimeitResult<any>]) {
+export async function prettyPrintResults(
+  results: [TimeitResult<any>, TimeitResult<any>]
+) {
   const [part1, part2] = results;
 
   /**
@@ -123,15 +136,15 @@ export async function prettyPrintResults(results: [TimeitResult<any>, TimeitResu
   const displayTime = (ms: number) => {
     if (ms < 1) return `${(ms * 1000).toFixed(2)}µs`;
     return `${ms.toFixed(2)}ms`;
-  }
+  };
 
-  console.log(chalk.bold.underline('Results 1:'));
+  console.log(chalk.bold.underline("Results 1:"));
   console.log(`Result: ${chalk.blue(part1.result)}`);
   console.log(`Average Time: ${chalk.green(displayTime(part1.average))}`);
   console.log(`Best Time: ${chalk.greenBright(displayTime(part1.best))}`);
   console.log(`Worst Time: ${chalk.redBright(displayTime(part1.worst))}\n`);
 
-  console.log(chalk.bold.underline('Results 2:'));
+  console.log(chalk.bold.underline("Results 2:"));
   console.log(`Result: ${chalk.blue(part2.result)}`);
   console.log(`Average Time: ${chalk.green(displayTime(part2.average))}`);
   console.log(`Best Time: ${chalk.greenBright(displayTime(part2.best))}`);
