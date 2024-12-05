@@ -26,34 +26,26 @@ export default class Solution {
     const updates = updatesStr.split("\n").map((update) => update.split(","));
 
     // Build a map of dependencies
-    const dependencies = new Map<string, Set<string>>();
-    for (const [prerequisite, dependent] of rules) {
-      if (!dependencies.has(dependent)) {
-        dependencies.set(dependent, new Set());
+    const dependents = new Map<string, Set<string>>();
+    for (const [prereq, dependent] of rules) {
+      if (!dependents.has(prereq)) {
+        dependents.set(prereq, new Set());
       }
-      dependencies.get(dependent)!.add(prerequisite);
+      dependents.get(prereq)!.add(dependent);
     }
 
+    const shouldComeBefore = (a: string, b: string): boolean => {
+      return dependents.get(a)?.has(b) ?? false;
+    };
+
     const isValidUpdate = (update: string[]): boolean => {
-      // Create a map of page positions for O(1) lookup
-      const positions = new Map(update.map((page, index) => [page, index]));
-
-      // Check each page's dependencies
-      for (let i = 0; i < update.length; i++) {
-        const currentPage = update[i];
-        const prereqs = dependencies.get(currentPage);
-
-        if (prereqs) {
-          // Check if all prerequisites appear before the current page
-          for (const prereq of prereqs) {
-            const prereqPos = positions.get(prereq);
-            // If prerequisite exists and appears after current page, update is invalid
-            if (prereqPos !== undefined && prereqPos > i) {
-              return false;
-            }
-          }
+      // If it's already sorted, it's valid
+      for (let i = 0; i < update.length - 1; i++) {
+        if (!shouldComeBefore(update[i], update[i + 1])) {
+          return false;
         }
       }
+
       return true;
     };
 
@@ -73,79 +65,38 @@ export default class Solution {
     const updates = updatesStr.split("\n").map((update) => update.split(","));
 
     // Build a map of dependencies
-    const dependencies = new Map<string, Set<string>>();
-    for (const [prerequisite, dependent] of rules) {
-      if (!dependencies.has(dependent)) {
-        dependencies.set(dependent, new Set());
+    const dependents = new Map<string, Set<string>>();
+    for (const [prereq, dependent] of rules) {
+      if (!dependents.has(prereq)) {
+        dependents.set(prereq, new Set());
       }
-      dependencies.get(dependent)!.add(prerequisite);
+      dependents.get(prereq)!.add(dependent);
     }
 
-    const isInvalidUpdate = (update: string[]): boolean => {
-      // Create a map of page positions for O(1) lookup
-      const positions = new Map(update.map((page, index) => [page, index]));
-
-      // Check each page's dependencies
-      for (let i = 0; i < update.length; i++) {
-        const currentPage = update[i];
-        const prereqs = dependencies.get(currentPage);
-
-        if (prereqs) {
-          // Check if all prerequisites appear before the current page
-          for (const prereq of prereqs) {
-            const prereqPos = positions.get(prereq);
-            // If prerequisite exists and appears after current page, update is invalid
-            if (prereqPos !== undefined && prereqPos > i) {
-              return true;
-            }
-          }
-        }
-      }
-      return false;
+    const shouldComeBefore = (a: string, b: string): boolean => {
+      return dependents.get(a)?.has(b) ?? false;
     };
 
-    const topologicalSort = (update: string[]): string[] => {
-      const originalNums = new Set<string>(update);
-      const visited = new Set<string>();
-      const sorted: string[] = [];
-
-      const visit = (page: string) => {
-        if (visited.has(page)) return;
-
-        // Visit all dependents first (pages that should come after this one)
-        const dependents = dependencies.get(page);
-        if (dependents) {
-          for (const dependent of dependents) {
-            if (originalNums.has(dependent)) {
-              // Only visit if it's in our update
-              visit(dependent);
-            }
-          }
+    const isInvalidUpdate = (update: string[]): boolean => {
+      // Can check if it's invalid by checking if it's not sorted
+      for (let i = 0; i < update.length - 1; i++) {
+        if (shouldComeBefore(update[i + 1], update[i])) {
+          return true;
         }
+      }
 
-        visited.add(page);
-
-        // Add the page to the start of the array (reverse topological order)
-        // Only if it was in the original update
-        if (originalNums.has(page)) {
-          sorted.unshift(page);
-        }
-      };
-
-      // Try to visit each page
-      update.forEach((page) => {
-        if (!visited.has(page)) {
-          visit(page);
-        }
-      });
-
-      return sorted;
+      return false;
     };
 
     return updates
       .filter(isInvalidUpdate)
       .map((update) => {
-        const sortedUpdate = topologicalSort(update);
+        // Sort based on dependencies
+        const sortedUpdate = update.sort((a, b) => {
+          if (shouldComeBefore(b, a)) return 1;
+          if (shouldComeBefore(a, b)) return -1;
+          return 0;
+        });
 
         return parseInt(sortedUpdate[Math.floor(sortedUpdate.length / 2)]);
       })
