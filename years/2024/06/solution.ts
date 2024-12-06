@@ -1,4 +1,4 @@
-import { create2DArrayFromInput, prettyPrintResults, timeit } from "@/utils";
+import { prettyPrintResults, timeit } from "@/utils";
 import { resolve } from "path";
 
 enum Direction {
@@ -8,8 +8,12 @@ enum Direction {
   WEST = 3,
 }
 
-// Position in the grid and direction
-type Vector2D = [number, Direction];
+enum CharCode {
+  WALL = 35,
+  GUARD = 94,
+  EMPTY = 46,
+  NEW_LINE = 10,
+}
 
 /**
  * ### Advent of Code 2024 - Day 6
@@ -24,7 +28,7 @@ export default class Solution {
 
     return {
       part1: await timeit(Solution.part1, [input]),
-      part2: await timeit(Solution.part2, [input]),
+      part2: await timeit(Solution.part2, [input], 1),
     };
   }
 
@@ -42,33 +46,28 @@ export default class Solution {
     [Direction.WEST]: Direction.NORTH,
   };
 
-  private static getGuardStartPosition(grid: string[][]): [number, number] {
-    // Find guard x and y position
-    let [x, y] = [-1, -1];
-
-    for (let i = 0; i < grid.length; i++) {
-      for (let j = 0; j < grid[i].length; j++) {
-        if (grid[i][j] === "^") {
-          [x, y] = [i, j];
-          break;
-        }
+  public static async part1(input: string): Promise<number> {
+    const grid = new Int8Array(input.length);
+    let idx = 0;
+    for (let i = 0; i < input.length; i++) {
+      const c = input.charCodeAt(i);
+      if (c !== CharCode.NEW_LINE) {
+        grid[idx++] = c;
       }
     }
 
-    if (x === -1 || y === -1) {
-      throw new Error("Guard not found");
-    }
+    const length = idx;
+    const width = input.indexOf("\n");
+    const height = length / width;
 
-    return [x, y];
-  }
+    const startPos = grid.indexOf(CharCode.GUARD);
+    if (startPos === -1) throw new Error("Guard not found");
 
-  public static async part1(input: string): Promise<number> {
-    const grid = create2DArrayFromInput(input);
-    let [x, y] = Solution.getGuardStartPosition(grid);
+    const startX = Math.floor(startPos / width);
+    const startY = startPos % width;
+    let [x, y] = [startX, startY];
 
-    const width = grid[0].length;
-    const height = grid.length;
-    const posToKey = (x: number, y: number) => y * width + x;
+    const posToFlat = (i: number, j: number) => i * width + j;
     const isInBounds = (i: number, j: number) =>
       i >= 0 && i < height && j >= 0 && j < width;
 
@@ -76,7 +75,7 @@ export default class Solution {
     let facing = Direction.NORTH;
 
     // Add initial position
-    visited.add(posToKey(x, y));
+    visited.add(posToFlat(x, y));
 
     while (true) {
       // Check if the next position would be in bounds
@@ -86,7 +85,7 @@ export default class Solution {
       }
 
       // Check if there is a wall in front of the guard (#)
-      if (grid[x + dx][y + dy] === "#") {
+      if (grid[posToFlat(x + dx, y + dy)] === CharCode.WALL) {
         // If there is a wall, turn right
         facing = Solution.NEXT_DIRECTION[facing];
         continue;
@@ -97,28 +96,30 @@ export default class Solution {
       y += dy;
 
       // Add new position to visited
-      visited.add(posToKey(x, y));
+      visited.add(posToFlat(x, y));
     }
 
     return visited.size;
   }
 
   private static isLooping(
-    grid: string[][],
+    grid: Int8Array,
+    width: number,
+    height: number,
     startX: number,
     startY: number
   ): boolean {
-    const width = grid[0].length;
-    const height = grid.length;
-    const posToKey = (x: number, y: number, direction: Direction) =>
-      `${x},${y},${direction}`;
+    const posToFlat = (i: number, j: number) => i * width + j;
+    // Since our flat position will never exceed 16900 (130*130),
+    // we can safely use the top 2 bits for direction by shifting left 16
+    const encodePosition = (flatPos: number, direction: Direction): number =>
+      (direction << 16) | flatPos;
+
     const isInBounds = (i: number, j: number) =>
       i >= 0 && i < height && j >= 0 && j < width;
 
-    let seen = new Set<ReturnType<typeof posToKey>>();
+    let seen = new Set<number>();
     let [x, y] = [startX, startY];
-    let looped = false;
-
     let facing = Direction.NORTH;
 
     while (true) {
@@ -127,40 +128,51 @@ export default class Solution {
         break;
       }
 
-      // Fetch what character is in front of the guard
-      if (grid[x + dx][y + dy] === "#" || grid[x + dx][y + dy] === "O") {
-        const key = posToKey(x + dx, y + dy, facing);
-
-        // Check if we've been here before
+      if (
+        grid[posToFlat(x + dx, y + dy)] === CharCode.WALL
+      ) {
+        const key = encodePosition(posToFlat(x, y), facing);
         if (seen.has(key)) {
-          looped = true;
-          break;
+          return true;
         }
-
         facing = Solution.NEXT_DIRECTION[facing];
         seen.add(key);
-
         continue;
       }
-
-      // Move the guard one step forward
       x += dx;
       y += dy;
     }
-    return looped;
+
+    return false;
   }
 
   public static async part2(input: string): Promise<number> {
-    const grid = create2DArrayFromInput(input);
-    const [startX, startY] = Solution.getGuardStartPosition(grid);
+    const grid = new Int8Array(input.length);
+    let idx = 0;
+    for (let i = 0; i < input.length; i++) {
+      const c = input.charCodeAt(i);
+      if (c !== CharCode.NEW_LINE) {
+        grid[idx++] = c;
+      }
+    }
+
+    const length = idx;
+    const width = input.indexOf("\n");
+    const height = length / width;
+
+    const startPos = grid.indexOf(CharCode.GUARD);
+    if (startPos === -1) throw new Error("Guard not found");
+    const startX = Math.floor(startPos / width);
+    const startY = startPos % width;
     let [x, y] = [startX, startY];
 
-    let posToKey = (i: number, j: number): number => i * grid[0].length + j;
-    let isInBounds = (i: number, j: number) =>
-      i >= 0 && i < grid.length && j >= 0 && j < grid[0].length;
+    const posToKey = (i: number, j: number): number => i * width + j;
+    const isInBounds = (i: number, j: number) =>
+      i >= 0 && i < grid.length && j >= 0 && j < width;
 
     let facing = Direction.NORTH;
     let cache = new Set<number>();
+
     // While we're tracing the original path.
     while (true) {
       const [dx, dy] = Solution.DIRECTION_DELTAS[facing];
@@ -169,20 +181,31 @@ export default class Solution {
       }
 
       // Check if there is a wall in front of the guard (#)
-      if (grid[x + dx][y + dy] === "#") {
+      const dKey = posToKey(x + dx, y + dy);
+      const char = grid[dKey];
+      if (char === CharCode.WALL) {
         // If there is a wall, turn right
         facing = Solution.NEXT_DIRECTION[facing];
         continue;
       }
 
+      // If we've tried this wall, we can skip it
+      if (cache.has(dKey)) {
+        // Move forward
+        x += dx;
+        y += dy;
+        continue;
+      }
+
       // Since there's no wall, place a pseudo-wall in front
-      const gridCopy = grid.map((row) => row.slice());
-      gridCopy[x + dx][y + dy] = "O";
+      grid[dKey] = CharCode.WALL;
 
       // Simulate this path
-      if (Solution.isLooping(gridCopy, startX, startY)) {
-        cache.add(posToKey(x + dx, y + dy));
+      if (Solution.isLooping(grid, width, height, startX, startY)) {
+        cache.add(dKey);
       }
+
+      grid[dKey] = CharCode.EMPTY;
 
       // Move forward
       x += dx;
