@@ -1,5 +1,7 @@
-import { prettyPrintResults, timeit } from "@/utils";
+import { create2DArrayFromInput, prettyPrintResults, timeit } from "@/utils";
 import { resolve } from "path";
+
+type Coordinates = [number, number];
 
 /**
  * ### Advent of Code 2024 - Day 8
@@ -18,12 +20,121 @@ export default class Solution {
     };
   }
 
+  private static fetchNodeLocations(
+    grid: string[][]
+  ): Map<string, Coordinates[]> {
+    // const nodeRegex = /(\w)/g;
+    const nodeLocations = new Map<string, Array<Coordinates>>();
+
+    // Find all the nodes in the grid and mark their locations
+    for (let y = 0; y < grid.length; y++) {
+      const row = grid[y];
+
+      for (let x = 0; x < row.length; x++) {
+        const node = row[x];
+
+        // if (node.match(nodeRegex)) {
+        if (node !== ".") {
+          if (!nodeLocations.has(node)) {
+            nodeLocations.set(node, [[x, y]]);
+          } else {
+            nodeLocations.get(node)?.push([x, y]);
+          }
+        }
+      }
+    }
+
+    return nodeLocations;
+  }
+
   public static async part1(input: string): Promise<number> {
-    return 0;
+    const grid = create2DArrayFromInput(input);
+    const width = grid[0].length;
+    const height = grid.length;
+
+    const withinBounds = (x: number, y: number) =>
+      x >= 0 && x < width && y >= 0 && y < height;
+    const posToKey = (x: number, y: number): number => y * width + x;
+
+    const nodeLocations = Solution.fetchNodeLocations(grid);
+
+    let antinodes = new Set<number>();
+    for (const [_, locations] of nodeLocations.entries()) {
+      if (locations.length < 2) continue;
+
+      // Compare each pair of node locations
+      for (let i = 0; i < locations.length; i++) {
+        for (let j = i + 1; j < locations.length; j++) {
+          const [x1, y1] = locations[i];
+          const [x2, y2] = locations[j];
+
+          // Get the distance between each of the nodes
+          const [dx, dy] = [x2 - x1, y2 - y1];
+
+          // Calc the antinodes
+          const fstAnti = [x1 - dx, y1 - dy] as const;
+          const sndAnti = [x2 + dx, y2 + dy] as const;
+
+          // Add the antinode position if it's within bounds
+          if (withinBounds(...fstAnti)) antinodes.add(posToKey(...fstAnti));
+          if (withinBounds(...sndAnti)) antinodes.add(posToKey(...sndAnti));
+        }
+      }
+    }
+
+    return antinodes.size;
   }
 
   public static async part2(input: string): Promise<number> {
-    return 0;
+    const grid = create2DArrayFromInput(input);
+    const width = grid[0].length;
+    const height = grid.length;
+
+    const withinBounds = (x: number, y: number) =>
+      x >= 0 && x < width && y >= 0 && y < height;
+    const posToKey = (x: number, y: number): number => y * width + x;
+
+    const nodeLocations = Solution.fetchNodeLocations(grid);
+
+    let antinodes = new Set<number>();
+    for (const [_, locations] of nodeLocations.entries()) {
+      if (locations.length < 2) continue;
+
+      // Compare each pair of node locations
+      for (let i = 0; i < locations.length; i++) {
+        for (let j = i + 1; j < locations.length; j++) {
+          const [x1, y1] = locations[i];
+          const [x2, y2] = locations[j];
+
+          // The nodes can be antinodes
+          antinodes.add(posToKey(x1, y1));
+          antinodes.add(posToKey(x2, y2));
+
+          // Get the distance between each of the nodes
+          const [dx, dy] = [x2 - x1, y2 - y1];
+
+          // Calc one direction of antinodes
+          let [x, y] = [x1 - dx, y1 - dy];
+
+          while (withinBounds(x, y)) {
+            antinodes.add(posToKey(x, y));
+            x -= dx;
+            y -= dy;
+          }
+
+          // Calc the other direction of antinodes
+          [x, y] = [x2 + dx, y2 + dy];
+
+          while (withinBounds(x, y)) {
+            antinodes.add(posToKey(x, y));
+            x += dx;
+            y += dy;
+          }
+        }
+      }
+    }
+
+    return antinodes.size;
   }
 }
 
