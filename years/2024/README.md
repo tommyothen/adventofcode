@@ -16,6 +16,7 @@ This is my repository for the Advent of Code 2024 challenges. Like last year, I 
 | 6   | Guard Gallivant       | [My Solution](./06/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/6) |
 | 7   | Bridge Repair         | [My Solution](./07/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/7) |
 | 8   | Resonant Collinearity | [My Solution](./08/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/8) |
+| 9   | Disk Fragmenter       | [My Solution](./09/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/9) |
 | ... | ...                   | ...                             |                                                       |
 
 _The table will be updated as I progress through the challenges._
