@@ -49,6 +49,14 @@ export const create2DArrayFromInput = <T extends string>(str: T) =>
   str.split("\n").map((line) => line.split("")) as Array<Array<T>>;
 
 /**
+ * Creates a 2D array from an input string and applies a function to each element
+ */
+export const create2DArrayFromInputAndApply = <T extends any>(
+  str: string,
+  fn: (str: string) => T
+) => str.split("\n").map((line) => line.split("").map(fn)) as Array<Array<T>>;
+
+/**
  * Returns if the specified string is a number
  */
 export const isNum = (str: string | undefined) =>
