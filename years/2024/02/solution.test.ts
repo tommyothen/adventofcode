@@ -12,7 +12,7 @@ test("2024/02 |> Part 1", async () => {
   expect(await Solution.part1(input)).toBe(2);
 });
 
-test("2024/02 |> ", async () => {
+test("2024/02 |> Part 2", async () => {
   const input = `7 6 4 2 1
 1 2 7 8 9
 9 7 6 2 1

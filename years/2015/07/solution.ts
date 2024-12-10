@@ -1,5 +1,4 @@
 import { prettyPrintResults, timeit } from "@/utils";
-import { get } from "https";
 import { resolve } from "path";
 
 /**
