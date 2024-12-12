@@ -61,9 +61,9 @@
     <text x="416" y="60" fill="#ccc">3</text>
     <text x="432" y="60" fill="#ffff66">**</text>
     <text x="0" y="76" fill="#ccc">|</text>
-    <text x="8" y="76" fill="#4d8b03">@</text>
+    <text x="8" y="76" fill="#01461f">#</text>
     <text x="16" y="76" fill="#5eabb4">..</text>
-    <text x="32" y="76" fill="#488813">@</text>
+    <text x="32" y="76" fill="#01461f">@</text>
     <text x="40" y="76" fill="#e3b585">'.</text>
     <text x="64" y="76" fill="#e3b585">~</text>
     <text x="80" y="76" fill="#00cc00">&quot;</text>
@@ -84,9 +84,10 @@
     <text x="416" y="76" fill="#ccc">4</text>
     <text x="432" y="76" fill="#ffff66">**</text>
     <text x="0" y="92" fill="#ccc">|</text>
-    <text x="8" y="92" fill="#4d8b03">_</text>
+    <text x="8" y="92" fill="#488813">_</text>
     <text x="16" y="92" fill="#5eabb4">.~.</text>
-    <text x="40" y="92" fill="#4d8b03">_@</text>
+    <text x="40" y="92" fill="#488813">_</text>
+    <text x="48" y="92" fill="#7fbd39">#</text>
     <text x="56" y="92" fill="#e3b585">'..</text>
     <text x="88" y="92" fill="#e3b585">~</text>
     <text x="104" y="92" fill="#e3b585">~</text>
@@ -105,8 +106,8 @@
     <text x="432" y="92" fill="#ffff66">**</text>
     <text x="0" y="108" fill="#ccc">|</text>
     <text x="16" y="108" fill="#ffffff">|||</text>
-    <text x="48" y="108" fill="#427322">@@</text>
-    <text x="64" y="108" fill="#488813">#</text>
+    <text x="48" y="108" fill="#427322">#</text>
+    <text x="64" y="108" fill="#7fbd39">#</text>
     <text x="80" y="108" fill="#e3b585">'''...</text>
     <text x="128" y="108" fill="#ccc">|</text>
     <text x="200" y="108" fill="#ccc">|</text>
@@ -120,13 +121,13 @@
     <text x="416" y="108" fill="#ccc">6</text>
     <text x="432" y="108" fill="#ffff66">**</text>
     <text x="0" y="124" fill="#ccc">|</text>
-    <text x="8" y="124" fill="#4d8b03">#</text>
+    <text x="8" y="124" fill="#488813">#</text>
     <text x="16" y="124" fill="#ffffff">~~~</text>
-    <text x="40" y="124" fill="#4d8b03">@</text>
-    <text x="48" y="124" fill="#01461f">@</text>
-    <text x="56" y="124" fill="#488813">@</text>
-    <text x="64" y="124" fill="#427322">@##</text>
-    <text x="88" y="124" fill="#4d8b03">@</text>
+    <text x="40" y="124" fill="#7fbd39">@</text>
+    <text x="48" y="124" fill="#488813">@</text>
+    <text x="72" y="124" fill="#01461f">@</text>
+    <text x="80" y="124" fill="#7fbd39">#@</text>
+    <text x="96" y="124" fill="#427322">#</text>
     <text x="128" y="124" fill="#ccc">|</text>
     <text x="200" y="124" fill="#ccc">|</text>
     <text x="208" y="124" fill="#a5a8af">/\</text>
@@ -194,18 +195,36 @@
     <text x="232" y="188" fill="#a25151">..'</text>
     <text x="272" y="188" fill="#ccc">|</text>
     <text x="312" y="188" fill="#ccc">|</text>
-    <text x="320" y="188" fill="#00b5ed">.</text>
+    <text x="320" y="188" fill="#00b5ed">..</text>
     <text x="344" y="188" fill="#ffffff">.</text>
+    <text x="360" y="188" fill="#00b5ed">..</text>
     <text x="384" y="188" fill="#ccc">|</text>
     <text x="408" y="188" fill="#ccc">11</text>
     <text x="432" y="188" fill="#ffff66">**</text>
-    <text x="56" y="204" fill="#333333">|</text>
-    <text x="128" y="204" fill="#333333">|</text>
-    <text x="200" y="204" fill="#333333">|</text>
-    <text x="272" y="204" fill="#333333">|</text>
-    <text x="312" y="204" fill="#333333">|</text>
-    <text x="384" y="204" fill="#333333">|</text>
-    <text x="408" y="204" fill="#333333">12</text>
+    <text x="56" y="204" fill="#ccc">|</text>
+    <text x="80" y="204" fill="#ffffff">-</text>
+    <text x="104" y="204" fill="#ffffff">-</text>
+    <text x="128" y="204" fill="#ccc">|</text>
+    <text x="200" y="204" fill="#ccc">|</text>
+    <text x="208" y="204" fill="#a25151">'''</text>
+    <text x="232" y="204" fill="#333333">::</text>
+    <text x="248" y="204" fill="#ffff66">:</text>
+    <text x="256" y="204" fill="#333333">::</text>
+    <text x="272" y="204" fill="#ccc">|</text>
+    <text x="312" y="204" fill="#ccc">|</text>
+    <text x="320" y="204" fill="#00a2db">.</text>
+    <text x="336" y="204" fill="#ffffff">.</text>
+    <text x="352" y="204" fill="#00a2db">.</text>
+    <text x="368" y="204" fill="#00a2db">.</text>
+    <text x="384" y="204" fill="#ccc">|</text>
+    <text x="408" y="204" fill="#ccc">12</text>
+    <text x="432" y="204" fill="#ffff66">**</text>
+    <text x="56" y="220" fill="#333333">|</text>
+    <text x="128" y="220" fill="#333333">|</text>
+    <text x="200" y="220" fill="#333333">|</text>
+    <text x="272" y="220" fill="#333333">|</text>
+    <text x="312" y="220" fill="#333333">|</text>
+    <text x="384" y="220" fill="#333333">|</text>
     <text x="408" y="220" fill="#333333">13</text>
     <text x="408" y="236" fill="#333333">14</text>
     <text x="408" y="252" fill="#333333">15</text>
