@@ -20,6 +20,7 @@ This is my repository for the Advent of Code 2024 challenges. Like last year, I 
 | 10  | Hoof It               | [My Solution](./10/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/10) |
 | 11  | Plutonian Pebbles     | [My Solution](./11/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/11) |
 | 12  | Garden Groups         | [My Solution](./12/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/12) |
+| 13  | Claw Contraption      | [My Solution](./13/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/13) |
 | ... | ...                   | ...                             |                                                        |
 
 _The table will be updated as I progress through the challenges._

@@ -78,6 +78,55 @@ export const lcm = (a: number, b: number): number => {
 };
 
 /**
+ * Calculates the determinant of a square matrix of any size
+ */
+export const determinant = (matrix: number[][]): number => {
+  // Special case for 1x1 matrix
+  if (matrix.length === 1) return matrix[0][0];
+
+  // Special case for 2x2 matrix (faster than recursion)
+  if (matrix.length === 2) {
+    return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+  }
+
+  // Validate square matrix
+  if (!matrix.every((row) => row.length === matrix.length)) {
+    throw new Error("Matrix must be square");
+  }
+
+  // Calculate determinant using Laplace expansion along first row
+  let det = 0;
+  for (let i = 0; i < matrix.length; i++) {
+    det += matrix[0][i] * cofactor(matrix, 0, i);
+  }
+  return det;
+};
+
+/**
+ * Calculates the cofactor of a matrix element
+ */
+export const cofactor = (
+  matrix: number[][],
+  row: number,
+  col: number
+): number => {
+  return ((row + col) % 2 ? -1 : 1) * determinant(minor(matrix, row, col));
+};
+
+/**
+ * Returns a minor matrix by removing specified row and column
+ */
+export const minor = (
+  matrix: number[][],
+  row: number,
+  col: number
+): number[][] => {
+  return matrix
+    .filter((_, index) => index !== row)
+    .map((row) => row.filter((_, index) => index !== col));
+};
+
+/**
  * Equivalent to the Python zip function
  */
 export const zip = <T extends any>(...arrs: Array<Array<T>>) => {
