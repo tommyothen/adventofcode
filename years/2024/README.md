@@ -23,6 +23,7 @@ This is my repository for the Advent of Code 2024 challenges. Like last year, I 
 | 13  | Claw Contraption      | [My Solution](./13/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/13) |
 | 14  | Restroom Redoubt      | [My Solution](./14/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/14) |
 | 15  | Warehouse Woes        | [My Solution](./15/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/15) |
+| 16  | Reindeer Maze         | [My Solution](./16/solution.ts) | [Challenge Page](https://adventofcode.com/2024/day/16) |
 | ... | ...                   | ...                             |                                                        |
 
 _The table will be updated as I progress through the challenges._
