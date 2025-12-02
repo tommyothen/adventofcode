@@ -19,11 +19,71 @@ export default class Solution {
   }
 
   public static async part1(input: string): Promise<number> {
-    return 0;
+    let answer = 0;
+
+    for (const range of input.split(",")) {
+      const [start, end] = range.split("-").map(Number);
+      for (let id = start; id <= end; id++) {
+        const idStr = id.toString();
+
+        // Only continue if the length is even
+        if (idStr.length % 2 !== 0) continue;
+
+        const firstHalf = idStr.slice(0, Math.floor(idStr.length / 2));
+        const secondHalf = idStr.slice(Math.ceil(idStr.length / 2));
+
+        if (firstHalf === secondHalf) {
+          answer += id;
+        }
+      }
+    }
+
+    return answer;
   }
 
   public static async part2(input: string): Promise<number> {
-    return 0;
+    let answer = 0;
+
+    const isRepeatedPattern = (s: string): boolean => {
+      const len = s.length;
+
+      // Needs to be at least 2 digits to form a pattern
+      if (len < 2) return false;
+
+      // Try every possible pattern length
+      for (let patternLen = 1; patternLen * 2 <= len; patternLen++) {
+        if (len % patternLen !== 0) continue;
+
+        const pattern = s.slice(0, patternLen);
+        let isPattern = true;
+
+        // Check all segments
+        for (let i = patternLen; i < len; i += patternLen) {
+          if (s.slice(i, i + patternLen) !== pattern) {
+            isPattern = false;
+            break;
+          }
+        }
+
+        if (isPattern) return true;
+      }
+
+      return false;
+    };
+
+    for (const range of input.split(",")) {
+      const [start, end] = range.split("-").map(Number);
+
+      for (let id = start; id <= end; id++) {
+        const idStr = id.toString();
+
+        if (isRepeatedPattern(idStr)) {
+          answer += id;
+        }
+      }
+    }
+
+    return answer;
   }
 }
 
