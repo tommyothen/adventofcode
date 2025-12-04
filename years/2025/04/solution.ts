@@ -1,4 +1,4 @@
-import { prettyPrintResults, timeit } from "@/utils";
+import { prettyPrintResults, timeit, create2DArrayFromInput } from "@/utils";
 import { resolve } from "path";
 
 /**
@@ -19,11 +19,86 @@ export default class Solution {
   }
 
   public static async part1(input: string): Promise<number> {
-    return 0;
+    const grid = create2DArrayFromInput<"." | "@">(input);
+    let count = 0;
+
+    // Loop over the grid
+    for (let y = 0; y < grid.length; y++) {
+      for (let x = 0; x < grid[y].length; x++) {
+        // If we find an @, check its 8 neighbors
+        if (grid[y][x] === "@") {
+          let numAdjacent = 0;
+          for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
+              if (dx === 0 && dy === 0) continue; // Skip self
+              const nx = x + dx;
+              const ny = y + dy;
+
+              if (
+                ny >= 0 &&
+                ny < grid.length &&
+                nx >= 0 &&
+                nx < grid[y].length &&
+                grid[ny][nx] === "@"
+              ) {
+                numAdjacent++;
+              }
+            }
+          }
+
+          if (numAdjacent < 4) {
+            count++;
+          }
+        }
+      }
+    }
+
+    return count;
   }
 
   public static async part2(input: string): Promise<number> {
-    return 0;
+    let grid = create2DArrayFromInput<"." | "@">(input);
+    let count = 0;
+    let flag = true;
+
+    while (flag) {
+      flag = false;
+      const newGrid = grid.map((row) => [...row]);
+
+      for (let y = 0; y < grid.length; y++) {
+        for (let x = 0; x < grid[y].length; x++) {
+          if (grid[y][x] === "@") {
+            let numAdjacent = 0;
+            for (let dy = -1; dy <= 1; dy++) {
+              for (let dx = -1; dx <= 1; dx++) {
+                if (dx === 0 && dy === 0) continue; // Skip self
+                const nx = x + dx;
+                const ny = y + dy;
+
+                if (
+                  ny >= 0 &&
+                  ny < grid.length &&
+                  nx >= 0 &&
+                  nx < grid[y].length &&
+                  grid[ny][nx] === "@"
+                ) {
+                  numAdjacent++;
+                }
+
+              }
+            }
+            if (numAdjacent < 4) {
+              newGrid[y][x] = ".";
+              flag = true;
+              count++;
+            }
+          }
+        }
+      }
+      grid = newGrid;
+    }
+
+    return count;
   }
 }
 

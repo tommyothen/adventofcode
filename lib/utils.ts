@@ -45,7 +45,7 @@ export const create2DArray = <T extends any>(
 /**
  * Creates a 2D array from an input string
  */
-export const create2DArrayFromInput = <T extends string>(str: T) =>
+export const create2DArrayFromInput = <T extends string>(str: string) =>
   str.split("\n").map((line) => line.split("")) as Array<Array<T>>;
 
 /**
