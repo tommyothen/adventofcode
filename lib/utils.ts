@@ -57,6 +57,40 @@ export const create2DArrayFromInputAndApply = <T extends any>(
 ) => str.split("\n").map((line) => line.split("").map(fn)) as Array<Array<T>>;
 
 /**
+ * Rotates a 2D array 90 degrees
+ * @param matrix The matrix to rotate
+ * @param clockwise Whether to rotate clockwise or counter-clockwise
+ */
+export const rotateMatrix = <T>(
+  matrix: Array<Array<T>>,
+  clockwise: boolean = true
+): Array<Array<T>> => {
+  if (!matrix.length || !matrix[0].length) {
+    throw new Error("Matrix must have at least one row and one column");
+  }
+
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+
+  const rotated: Array<Array<T>> =
+    Array.from({ length: cols }, () =>
+      new Array<T>(rows)
+    );
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      if (clockwise) {
+        rotated[c][rows - 1 - r] = matrix[r][c];
+      } else {
+        rotated[cols - 1 - c][r] = matrix[r][c];
+      }
+    }
+  }
+
+  return rotated;
+};
+
+/**
  * Returns if the specified string is a number
  */
 export const isNum = (str: string | undefined) =>
